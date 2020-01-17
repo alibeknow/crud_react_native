@@ -1,28 +1,21 @@
-import React, { useContext, useState } from "react";
-import {
-  View,
-  Text,
-  StyleSheet,
-  TouchableOpacity,
-  TextInput
-} from "react-native";
+import React, { useContext } from "react";
+import { StyleSheet } from "react-native";
 import { Context } from "../context/BlogContext";
 import { EvilIcons } from "@expo/vector-icons";
+import BlogPostForm from "../components/BlogPostForm";
 
 const EditScreen = ({ navigation }) => {
-  const { state } = useContext(Context);
-  const blogPost = state.find(
-    blogPost => blogPost.id === navigation.getParam("id")
-  );
-
-  const [title, setTitle] = useState(blogPost.title);
-  const [content, setContent] = useState(blogPost.content);
+  const { state, editBlogPost } = useContext(Context);
+  const id = navigation.getParam("id");
+  const blogPost = state.find(blogPost => blogPost.id === id);
 
   return (
-    <View>
-      <Text>Edit Title:</Text>
-      <TextInput value={title} onChangeText={newTitle => setTitle(newTitle)} />
-    </View>
+    <BlogPostForm
+      initialValues={{ title: blogPost.title, content: blogPost.content }}
+      onSubmit={(title, content) => {
+        editBlogPost(id, title, content);
+      }}
+    />
   );
 };
 
