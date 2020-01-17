@@ -1,0 +1,13 @@
+{
+    "git.autofetch": true,
+    "workbench.iconTheme": "vscode-icons",
+    "editor.defaultFormatter": "esbenp.prettier-vscode",
+    "window.zoomLevel": 0,
+    "[javascript]":{
+        "editor.formatOnSave":true
+    },
+    "editor.codeActionsOnSave": {
+        "source.fixAll.eslint": true
+    },
+    "eslint.alwaysShowStatus": true
+}
